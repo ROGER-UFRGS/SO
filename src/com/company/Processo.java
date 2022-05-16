@@ -14,17 +14,29 @@ public class Processo {
         this.tempo_restante = 0;
     }
 
-
-    public void setTempo_espera() {
-        this.tempo_espera =  new Random().nextInt(10);
+    public String getId_processo() {
+        return id_processo;
     }
 
+    public void setTempo_espera(int espera) {
+        this.tempo_espera = espera;
+    }
 
-    public void mostraStatusDoProcesso(int tempo){
-        System.out.println(this.id_processo+" - Tempo restante "+ (this.tempo_execucao - tempo));
+    public Integer setTempo_execucao(int tempo){
+        return this.tempo_restante = this.tempo_execucao - (tempo+1);
     }
 
     public Integer getTempo_execucao() {
         return tempo_execucao;
+    }
+    public void mostraProcesso(){
+        System.out.println("ID "+this.id_processo);
+        System.out.println("TEMPO DE EXECUÇÃO " + this.tempo_execucao);
+        System.out.println("-----------------------------------------");
+    }
+
+    @Override
+    public String toString() {
+        return this.id_processo + " - Tempo restante "+ this.tempo_restante;
     }
 }
