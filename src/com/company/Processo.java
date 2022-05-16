@@ -1,12 +1,11 @@
 package com.company;
 
-import java.util.Random;
-
 public class Processo {
     String id_processo;
     Integer tempo_execucao;
     Integer tempo_espera;
     Integer tempo_restante;
+    Integer tempo_chegada;
 
     public Processo(String id_processo, Integer tempo_execucao) {
         this.id_processo = id_processo;

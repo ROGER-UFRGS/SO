@@ -3,7 +3,6 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
 
@@ -11,7 +10,6 @@ public class Main {
         System.out.println("Digite o número de processos");
         int num_processos = new Scanner(System.in).nextInt();
         ArrayList<Processo> processos = new ArrayList(num_processos);
-
         for (int i = 0; i < num_processos; i++) {
             System.out.println("Processo "+(i+1)+" Digite \n1) Aleatório\n2) Ler tempo");
             int opcao = new Scanner(System.in).nextInt();
@@ -23,24 +21,20 @@ public class Main {
             }
         }
 
-        AtomicInteger acumulador = new AtomicInteger();
+        ListaProcessos listaProcessos = new ListaProcessos(processos);
+        System.out.println("Digite o tipo do algoritmo de escalonamento\n1) FCFS\n2) SJF PREEMPITIVO\n3) SJF NÃO PREEMPITIVO");
+        int opcao = new Scanner(System.in).nextInt();
+        switch (opcao){
+            case 1:
+                listaProcessos.fcfsList();
+                break;
+            case 2:
+                listaProcessos.sjfPreemptivo();
+                break;
+            case 3:
+                listaProcessos.sjfNaoPreemptivo();
+                break;
 
-        AtomicInteger cont = new AtomicInteger();
-        processos.forEach(processo -> {
-            processo.setTempo_espera(cont.get());
-            processo.mostraProcesso();
-            for (int i = 0; i < processo.getTempo_execucao(); i++) {
-                processo.setTempo_execucao(i);
-                System.out.println(cont+" - "+processo);
-                cont.getAndIncrement();
-            }
-            System.out.println("-----------------------");
-        });
-
-        processos.forEach(processo -> {
-            acumulador.addAndGet(processo.tempo_espera);
-            System.out.println("Tempo de espera do processo "+processo.getId_processo() +" = "+ processo.tempo_espera);
-        });
-        System.out.println("Tempo médio de espera = "+ acumulador.get() / num_processos);
+        }
     }
 }
