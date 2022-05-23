@@ -5,7 +5,6 @@ public class Processo {
     Integer tempo_execucao;
     Integer tempo_espera;
     Integer tempo_restante;
-    Integer tempo_chegada;
 
     public Processo(String id_processo, Integer tempo_execucao) {
         this.id_processo = id_processo;
@@ -32,6 +31,14 @@ public class Processo {
         System.out.println("ID "+this.id_processo);
         System.out.println("TEMPO DE EXECUÇÃO " + this.tempo_execucao);
         System.out.println("-----------------------------------------");
+    }
+
+    public Processo maior(Processo p){
+        if(this.getTempo_execucao() < p.getTempo_execucao()){
+            return this;
+        }else{
+            return p;
+        }
     }
 
     @Override
