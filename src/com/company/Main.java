@@ -22,7 +22,7 @@ public class Main {
         }
 
         ListaProcessos listaProcessos = new ListaProcessos(processos);
-        System.out.println("Digite o tipo do algoritmo de escalonamento\n1) FCFS\n2) SJF PREEMPITIVO\n3) SJF NÃO PREEMPITIVO");
+        System.out.println("Digite o tipo do algoritmo de escalonamento\n1) FCFS\n2) SJF PREEMPITIVO\n3) SJF NÃO PREEMPITIVO\n4)PRIORIDADE\n5)ROUNDROBIN");
         int opcao = new Scanner(System.in).nextInt();
         switch (opcao){
             case 1:
@@ -33,6 +33,12 @@ public class Main {
                 break;
             case 3:
                 listaProcessos.sjfNaoPreemptivo();
+                break;
+            case 4:
+                listaProcessos.prioridade();
+                break;
+            case 5:
+                listaProcessos.roundRobin();
                 break;
 
         }
