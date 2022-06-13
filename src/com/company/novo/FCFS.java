@@ -20,7 +20,7 @@ public class FCFS {
             processo.setTempoExecucao(n);
         }
         for (cont = 1; cont < lista.size(); cont++) {
-            lista.get(cont).setTempoEspera(lista.get(cont-1).getTempoEspera()+lista.get(cont).getTempoExecucao());
+            lista.get(cont).setTempoEspera(lista.get(cont-1).getTempoExecucao() + lista.get(cont -1).getTempoEspera());
             this.media += lista.get(cont).getTempoEspera();
         }
         this.media /= lista.size();
