@@ -20,7 +20,7 @@ public class Main {
                     break;
 
                 case 4:
-
+                    escalonador.ROBIN();
                     break;
 
                 case 5:
