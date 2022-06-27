@@ -13,35 +13,37 @@ public class ROBIN {
     }
 
     private void exec(List<Processo> processos) {
-        int tempoAtual = 0, cont = 0, quantum = 0, tempoRestante = 0;
+        int tempoAtual = 0, cont = 0;
 
         MSG msg = new MSG();
-        msg.msg("%1.35S","Entrar com Fatia de tempo : ");
+        msg.msg("%1.35S", "Entrar com Fatia de tempo : ");
         this.fatiaDeTempo = msg.lerNumero();
-        
-        msg.msg("%1.35S%n","Entrar com o Tempo de execução : ");
+
+        msg.msg("%1.35S%n", "Entrar com o Tempo de execução : ");
         for (Processo processo : processos) {
             msg.msg("%15.5S : ", processo.getId());
             Integer n = msg.lerNumero();
             processo.setTempoExecucao(n);
         }
 
-            while(!processos.isEmpty()){
-                for (int i = 0; i < processos.size(); i++) {
-                    Processo processo = processos.get(i);
-                    quantum = this.fatiaDeTempo;
-                    for (int u = 0; u < quantum; u++) {
-                        if(processo.getTempoExecucao() > 0){
-                            processo.setTempoExecucao(processo.getTempoExecucao() -1);
-                        }else if(processo.getTempoExecucao() == 0){
-                            processos.remove(processo);
-                        }else{
-
-                        }
-                        System.out.println(cont+" - "+processo);
+        while (!processos.isEmpty()) {
+            for (int i = 0; i < processos.size(); i++) {
+                Processo processo = processos.get(i);
+                if (processo.getTempoExecucao() >= this.fatiaDeTempo) {
+                    for (int j = 0; j < this.fatiaDeTempo; j++) {
+                        processo.setTempoExecucao(processo.getTempoExecucao() - 1);
+                        System.out.println(cont + " " + processo);
+                        cont++;
+                    }
+                } else {
+                    for (int j = 0; j < processo.getTempoExecucao()+1; j++) {
+                        processo.setTempoExecucao(processo.getTempoExecucao() - 1);
+                        System.out.println(cont + " " + processo);
                         cont++;
                     }
                 }
+                if (processo.getTempoExecucao() == 0) processos.remove(processo);
             }
+        }
     }
 }
