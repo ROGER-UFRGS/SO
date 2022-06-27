@@ -55,4 +55,9 @@ public class Processo {
     public void setTempoChegada(Integer tempoChegada) {
         this.tempoChegada = tempoChegada;
     }
+
+    @Override
+    public String toString() {
+        return "id='" + id + '}';
+    }
 }

@@ -14,8 +14,6 @@ public class ROBIN {
 
     private void exec(List<Processo> processos) {
         int tempoAtual = 0, cont = 0, quantum = 0, tempoRestante = 0;
-        List<Processo> prontos     = new ArrayList<>(processos.size());
-        List<Processo> finalizados = new ArrayList<>(processos.size());
 
         MSG msg = new MSG();
         msg.msg("%1.35S","Entrar com Fatia de tempo : ");
@@ -29,11 +27,21 @@ public class ROBIN {
         }
 
             while(!processos.isEmpty()){
-                Processo processo = processos.get(0);
-                prontos.set(0,processo);
+                for (int i = 0; i < processos.size(); i++) {
+                    Processo processo = processos.get(i);
+                    quantum = this.fatiaDeTempo;
+                    for (int u = 0; u < quantum; u++) {
+                        if(processo.getTempoExecucao() > 0){
+                            processo.setTempoExecucao(processo.getTempoExecucao() -1);
+                        }else if(processo.getTempoExecucao() == 0){
+                            processos.remove(processo);
+                        }else{
 
-                cont++;
+                        }
+                        System.out.println(cont+" - "+processo);
+                        cont++;
+                    }
+                }
             }
-
     }
 }
